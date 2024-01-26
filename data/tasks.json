@@ -1,6 +1,1 @@
-[
-    {"id": "1", "title": "Learn JavaScript", "status": "DONE"},
-    {"id": "2", "title": "Learn NodeJS", "status": "PENDING"},
-    {"id": "3", "title": "Build TODO app", "status": "PENDING"},
-    {"id": "4", "title": "learn REST APIs", "status": "PENDING"}
-]
+[{"id":"1","title":"Learn JavaScript","status":true},{"id":"2","title":"Learn NodeJS","status":false},{"id":"3","title":"Build TODO app","status":false},{"id":"4","title":"learn REST APIs","status":false}]
