@@ -37,6 +37,25 @@ exports.createTask = async (req, res, next) => {
     // }
 };
 
+exports.updateTask = (req, res, next) => {
+    
+};
+
+exports.deleteTask = (req, res, next) => {
+    const taskId = req.params.taskId
+    Task
+    .findByPk(taskId)
+    .then(task => {
+        return task.destroy();
+    })
+    .then(() => {
+        res.redirect("/tasks");
+    })
+    .catch(err => {
+        console.log(err);
+    })
+};
+
 exports.changeTaskStatus = (req, res, next) => {
     const taskId = req.params.taskId
     Task

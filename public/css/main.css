@@ -3,10 +3,23 @@ body {
     align-items: center;
     justify-content: center;
     margin: 5px;
-    font-size: 2em;
+    font-size: 1.5em;
 }
 
 .main-div {
     width: 50%;
     text-align: left;
+}
+
+p {
+    margin-right: 3px;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+form {
+    display: inline-block;
+    vertical-align: top;
 }
