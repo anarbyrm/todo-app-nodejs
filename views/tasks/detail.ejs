@@ -4,10 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= pageTitle %></title>
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-    <h1>Task title</h1>
-    <hr>
-    <p>Task status: status</p>
+    <div class="main-div">
+        TASK <hr><br>
+        <form action="/tasks/<%= task.id %>/edit" method="post">
+            <input type="text" name="title" value="<%= task.title %>">
+            <input type="submit" value="SAVE">
+        </form>
+    </div>
 </body>
 </html>

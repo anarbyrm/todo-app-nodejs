@@ -19,7 +19,7 @@
                 <% if (tasks.length > 0) { %>
                     <% for (let task of tasks) { %>
                         <li>
-                            <a href="/tasks/<%= task.id %>/edit">
+                            <a href="/tasks/<%= task.id %>">
                             <% if (task.status) { %>
                                 <s><%= task.title %></s>
                                 <form action="/tasks/<%= task.id %>/done" method="POST">

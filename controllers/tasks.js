@@ -37,8 +37,32 @@ exports.createTask = async (req, res, next) => {
     // }
 };
 
+exports.getTask = (req, res, next) => {
+    const taskId = req.params.taskId;
+    Task
+        .findByPk(taskId)
+        .then(task => {
+            res.render('tasks/detail', { pageTitle: task.title, task})
+        })
+        .catch(err => {
+            console.log(err);
+        });
+};
+
 exports.updateTask = (req, res, next) => {
-    
+    const taskId = req.params.taskId;
+    Task
+        .findByPk(taskId)
+        .then(task => {
+            console.log(req.body);
+            return task.update({ title: req.body.title });
+        })
+        .then(updatedTask => {
+            res.redirect('/tasks');
+        })
+        .catch(err => {
+            console.log(err);
+        })
 };
 
 exports.deleteTask = (req, res, next) => {
