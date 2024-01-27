@@ -8,7 +8,7 @@
 <body>
     <h1>Tasks</h1>
     <ul>
-        <% if (tasks) { %>
+        <% if (tasks.length > 0) { %>
             <% for (let task of tasks) { %>
                 <li class="<%= task.id %>">
                     <% if (task.status) { %>
@@ -24,9 +24,9 @@
                     <% } %>
                 </li>
             <% } %>
+    </ul>
         <% } else {  %>
             <h3>No tasks found...</h3>
         <% } %>
-    </ul>
 </body>
 </html>

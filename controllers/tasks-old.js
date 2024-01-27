@@ -2,17 +2,16 @@ const fs = require('fs');
 const path = require('path');
 
 const helpers = require('../utils/helpers');
-const Task = require('../models/tasks');
 
 exports.getAllTasks = (req, res, next) => {
-    Task
-    .findAll()
-    .then(tasks => {
-        console.log(tasks)
-        res.render('tasks/list', {tasks, pageTitle: 'Tasks'});
-    })
-    .catch(err => {
-        console.log(err);
+    const filePath = path.join(__dirname, '..', 'data', 'tasks.json');
+    fs.readFile(filePath, (err, data) => {
+        if (!err) {
+            const tasks = JSON.parse(data);
+            res.render('tasks/list', {tasks, pageTitle: 'Tasks'});
+        } else {
+            console.error(err);
+        };
     });
 };
 
