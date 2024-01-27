@@ -1,14 +1,14 @@
-const fs = require('fs');
-const path = require('path');
-
-const helpers = require('../utils/helpers');
 const Task = require('../models/tasks');
 
 exports.getAllTasks = (req, res, next) => {
     Task
-    .findAll()
+    .findAll({
+        order: [
+            ['status', 'ASC'],
+            ['createdAt', 'ASC']
+        ]
+    })
     .then(tasks => {
-        console.log(tasks)
         res.render('tasks/list', {tasks, pageTitle: 'Tasks'});
     })
     .catch(err => {
@@ -16,9 +16,38 @@ exports.getAllTasks = (req, res, next) => {
     });
 };
 
+exports.createTask = async (req, res, next) => {
+    const title = req.body.title;
+    Task
+    .create({ title })
+    .then(task => {
+        res.redirect('/tasks');
+    })
+    .catch(err => {
+        console.log(err);
+    });
+
+    // async/await example
+
+    // try {
+    //     await Task.create({ title });
+    //     res.redirect('/tasks');
+    // } catch (err) {
+    //     console.log(err);
+    // }
+};
+
 exports.changeTaskStatus = (req, res, next) => {
     const taskId = req.params.taskId
-    helpers.updateTaskStatus(taskId, () => {
-        return res.redirect('/tasks');
-    });
+    Task
+        .findByPk(taskId)
+        .then(task => {
+            return task.update({ status: !task.status})
+        })
+        .then(task => {
+            res.redirect('/tasks');
+        })
+        .catch(err => {
+            console.log(err);
+        });
 };

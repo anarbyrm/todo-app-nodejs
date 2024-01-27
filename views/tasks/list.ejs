@@ -4,29 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= pageTitle %></title>
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-    <h1>Tasks</h1>
-    <ul>
-        <% if (tasks.length > 0) { %>
-            <% for (let task of tasks) { %>
-                <li class="<%= task.id %>">
-                    <% if (task.status) { %>
-                        <form action="/tasks/<%= task.id %>/done" method="POST">
-                            <s><%= task.title %></s>
-                            <input type="submit" value="UNDONE">
-                        </form>
-                    <% } else { %>
-                        <form action="/tasks/<%= task.id %>/done" method="POST">
-                            <%= task.title %>
-                            <input type="submit" value="DONE">
-                        </form>
+    <div class="main-div">
+        <form action="/tasks" method="POST">
+            <input type="text" name="title" placeholder="add new task here...">
+            <input type="submit" value="ADD">
+        </form><br>
+    
+        <h1>Tasks</h1>
+        <div>
+            <ul>
+                <% if (tasks.length > 0) { %>
+                    <% for (let task of tasks) { %>
+                        <li class="<%= task.id %>">
+                            <% if (task.status) { %>
+                                <form action="/tasks/<%= task.id %>/done" method="POST">
+                                    <s><%= task.title %></s>
+                                    <input type="submit" value="UNDONE">
+                                </form>
+                            <% } else { %>
+                                <form action="/tasks/<%= task.id %>/done" method="POST">
+                                    <%= task.title %>
+                                    <input type="submit" value="DONE">
+                                </form>
+                            <% } %>
+                        </li>
                     <% } %>
-                </li>
-            <% } %>
-    </ul>
-        <% } else {  %>
-            <h3>No tasks found...</h3>
-        <% } %>
+            </ul>
+                <% } else {  %>
+                    <h3>No tasks found...</h3>
+                <% } %>
+        </div>
+    </div>
 </body>
 </html>
